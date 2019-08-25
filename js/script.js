@@ -1,7 +1,6 @@
 $(function(){
     $(".btn").click(function(){
 
-
         if($("input").val() !== ""){
 
             $("#searchImg").html("");
@@ -22,10 +21,10 @@ $(function(){
                                 helper: "clone"
                             });
                         });
-                        $( ".sectionContainer" ).droppable({
+                        $( ".basketDiv" ).droppable({
                             drop: function( event, ui ) {
                                 $(ui.draggable).fadeOut(1, function(){
-                                    $(this).appendTo(".sectionContainer").fadeIn(1)
+                                    $(this).appendTo(".basketDiv").fadeIn(1)
                                 })
                             }
                         });
@@ -42,3 +41,22 @@ $(function(){
     })
 
 })
+
+function bbgg(){
+   var con = document.querySelector(".sectionContainer");
+   con.innerHTML = "";
+
+    var input = document.querySelector(".input").value;
+    var inputSplit = input.split(" ");
+    inputSplit.forEach(function(e){
+        var div = document.createElement("div");
+        var p = document.createElement("p");
+        p.className = "p";
+        div.className = e;
+        div.classList.add("basketDiv");
+        p.innerHTML = e;
+        div.appendChild(p);
+        con.appendChild(div);
+        
+    })
+}
