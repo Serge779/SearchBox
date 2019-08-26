@@ -57,8 +57,10 @@ input:focus{
     height: 270px;
     display: flex;
     justify-content: space-around;
+    border-left: transparent;
+    border-right: transparent;
 }
-.imgStyle{
+.imgStyle1, .imgStyle2{
     width: 130px;
     height: 100px;
     margin: 5px;
@@ -75,13 +77,24 @@ input:focus{
 }
 
 
-.p{
-    border: 1px solid lightseagreen;
-    margin: 10px 2px;
+.p {
+    border-bottom: 1px dashed lightseagreen;
+    text-align: center;
 }
-.basketDiv{
+.basketDiv1, .basketDiv2 {
     width: 280px;
     height: 100%;
-    border: 1px solid lightseagreen;
+    border: 1px dashed lightseagreen;
+    border-top: transparent;
+    border-bottom: transparent;
     overflow: hidden;
+    margin-top: -16px;
+}
+
+.kl {
+    display: flex;
+    flex-direction: column;
+}
+.aac{
+    background: rgba(26,219,0,.3);
 }
