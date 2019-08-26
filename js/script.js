@@ -1,62 +1,106 @@
 $(function(){
     $(".btn").click(function(){
 
-        if($("input").val() !== ""){
+        if($("input").val() !== "" && $("input").val() !== " "){
 
-            $("#searchImg").html("");
+            if($("input").val().split(" ").length > 2){
 
-            $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",{
-                tags: $("input").val(),
-                tagmode: "any",
-                format: "json"
-            }).done(function(data){
-                $("input").val("")
-                $.each(data.items, function(index, item){
-                    $("<img>").addClass("imgStyle").attr("src", item.media.m).appendTo("#searchImg")
-        
-                    if(index == 4){
-                        $( function(){
-                            $( ".imgStyle" ).draggable({
-                                revert: "invalid",
-                                helper: "clone"
+                alert("Please write one or two word")
+
+            }else{
+                
+                $("#searchImg").html("");
+                $(".basketDiv1").html("");
+                var first = $("input").val().split(" ");
+                var firstSearch = first[0];
+
+                $(".p1").html(firstSearch)
+                $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",{
+                    tags: firstSearch,
+                    tagmode: "any",
+                    format: "json"
+                }).done(function(data){
+                    $("input").val("")
+                    $.each(data.items, function(index, item){
+                        $("<img>").addClass("imgStyle1").attr("src", item.media.m).appendTo("#searchImg")
+            
+                        if(index == 2){
+                            $( function(){
+                                $( ".imgStyle1" ).draggable({
+                                    revert: "invalid",
+                                    helper: "clone",
+                                    scope: "img1"
+                                });
                             });
-                        });
-                        $( ".basketDiv" ).droppable({
-                            drop: function( event, ui ) {
-                                $(ui.draggable).fadeOut(1, function(){
-                                    $(this).appendTo(".basketDiv").fadeIn(1)
-                                })
-                            }
-                        });
-                        return false
-                    }
+                            $( ".basketDiv1" ).droppable({
+                                scope: "img1",
+                                activeClass: "aac",
+                                drop: function( event, ui ) {
+                                    $(ui.draggable).fadeOut(1, function(){
+                                        $(this).appendTo(".basketDiv1").fadeIn(1)
+                                    })
+                                }
+                            });
+                            return false
+                        }
+                    })
+                }).fail(function(){
+                    alert("Ajax call faild")
                 })
-            }).fail(function(){
-                alert("Ajax call faild")
-            })
+
+            }
         }else{
             alert("Please write anything!")
         }
-
     })
 
+
+    $(".btn").click(function(){
+
+        if($("input").val() !== "" && $("input").val() !== " " && $("input").val().split(" ").length == 2){
+
+            if($("input").val().split(" ").length > 2){
+
+                return false
+
+            }else{
+
+                $(".basketDiv2").html("");
+                var first = $("input").val().split(" ");
+                var firstSearch = first[1];
+                
+                $(".p2").html(firstSearch)
+
+                $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",{
+                    tags: firstSearch,
+                    tagmode: "any",
+                    format: "json"
+                }).done(function(data){
+                    $.each(data.items, function(index, item){
+                        $("<img>").addClass("imgStyle2").attr("src", item.media.m).appendTo("#searchImg")
+            
+                        if(index == 1){
+                            $(function(){
+                                $( ".imgStyle2" ).draggable({
+                                    revert: "invalid",
+                                    helper: "clone",
+                                    scope: "img2"
+                                });
+                            });
+                            $(".basketDiv2").droppable({
+                                scope: "img2",
+                                activeClass: "aac",
+                                drop: function( event, ui ) {
+                                    $(ui.draggable).fadeOut(1, function(){
+                                        $(this).appendTo(".basketDiv2").fadeIn(1)
+                                    })
+                                }
+                            });
+                            return false
+                        }
+                    })
+                })
+            }
+        }
+    })
 })
-
-function bbgg(){
-   var con = document.querySelector(".sectionContainer");
-   con.innerHTML = "";
-
-    var input = document.querySelector(".input").value;
-    var inputSplit = input.split(" ");
-    inputSplit.forEach(function(e){
-        var div = document.createElement("div");
-        var p = document.createElement("p");
-        p.className = "p";
-        div.className = e;
-        div.classList.add("basketDiv");
-        p.innerHTML = e;
-        div.appendChild(p);
-        con.appendChild(div);
-        
-    })
-}
