@@ -29,7 +29,7 @@ $(function(){
 
                         }else if(first.length == 2 && first[1] == "" || first.length == 1){
                             $("<img>").addClass("imgStyle1").attr("src", item.media.m).appendTo("#searchImg")
-
+                            $(".p2").html("")
                             if(index == 4){
                                 $( function(){
                                     $( ".imgStyle1" ).draggable({
@@ -110,7 +110,7 @@ $(function(){
                     $.each(data.items, function(index, item){
                         if(first[1] == ""){
 
-                                return false
+                            return false
 
                         }else if(first.length == 2 && first[0] == ""){
                             $("<img>").addClass("imgStyle2").attr("src", item.media.m).appendTo("#searchImg")
