@@ -163,3 +163,8 @@ $(function(){
         }
     })
 })
+
+document.querySelector(".babt").addEventListener("click", function(){
+    document.querySelector(".sectionContainer").classList.toggle("height");
+    document.querySelector(".i").classList.toggle("iStyle");
+});
