@@ -22,26 +22,57 @@ $(function(){
                 }).done(function(data){
                     $("input").val("")
                     $.each(data.items, function(index, item){
-                        $("<img>").addClass("imgStyle1").attr("src", item.media.m).appendTo("#searchImg")
-            
-                        if(index == 2){
-                            $( function(){
-                                $( ".imgStyle1" ).draggable({
-                                    revert: "invalid",
-                                    helper: "clone",
-                                    scope: "img1"
-                                });
-                            });
-                            $( ".basketDiv1" ).droppable({
-                                scope: "img1",
-                                activeClass: "aac",
-                                drop: function( event, ui ) {
-                                    $(ui.draggable).fadeOut(1, function(){
-                                        $(this).appendTo(".basketDiv1").fadeIn(1)
-                                    })
-                                }
-                            });
+                        
+                        if(first[0] == ""){
+
                             return false
+
+                        }else if(first.length == 2 && first[1] == "" || first.length == 1){
+                            $("<img>").addClass("imgStyle1").attr("src", item.media.m).appendTo("#searchImg")
+
+                            if(index == 4){
+                                $( function(){
+                                    $( ".imgStyle1" ).draggable({
+                                        revert: "invalid",
+                                        helper: "clone",
+                                        scope: "img1"
+                                    });
+                                });
+                                $( ".basketDiv1" ).droppable({
+                                    scope: "img1",
+                                    activeClass: "aac",
+                                    drop: function( event, ui ) {
+                                        $(ui.draggable).fadeOut(1, function(){
+                                            $(this).appendTo(".basketDiv1").fadeIn(1)
+                                        })
+                                    }
+                                });
+                                return false
+                            }
+
+                        }else{
+                            $("<img>").addClass("imgStyle1").attr("src", item.media.m).appendTo("#searchImg")
+            
+                            if(index == 2){
+                                $( function(){
+                                    $( ".imgStyle1" ).draggable({
+                                        revert: "invalid",
+                                        helper: "clone",
+                                        scope: "img1"
+                                    });
+                                });
+                                $( ".basketDiv1" ).droppable({
+                                    scope: "img1",
+                                    activeClass: "aac",
+                                    drop: function( event, ui ) {
+                                        $(ui.draggable).fadeOut(1, function(){
+                                            $(this).appendTo(".basketDiv1").fadeIn(1)
+                                        })
+                                    }
+                                });
+                                return false
+                            }
+
                         }
                     })
                 }).fail(function(){
@@ -77,27 +108,55 @@ $(function(){
                     format: "json"
                 }).done(function(data){
                     $.each(data.items, function(index, item){
-                        $("<img>").addClass("imgStyle2").attr("src", item.media.m).appendTo("#searchImg")
-            
-                        if(index == 1){
-                            $(function(){
-                                $( ".imgStyle2" ).draggable({
-                                    revert: "invalid",
-                                    helper: "clone",
-                                    scope: "img2"
+                        if(first[1] == ""){
+
+                                return false
+
+                        }else if(first.length == 2 && first[0] == ""){
+                            $("<img>").addClass("imgStyle2").attr("src", item.media.m).appendTo("#searchImg")
+                            if(index == 4){
+                                $(function(){
+                                    $( ".imgStyle2" ).draggable({
+                                        revert: "invalid",
+                                        helper: "clone",
+                                        scope: "img2"
+                                    });
                                 });
-                            });
-                            $(".basketDiv2").droppable({
-                                scope: "img2",
-                                activeClass: "aac",
-                                drop: function( event, ui ) {
-                                    $(ui.draggable).fadeOut(1, function(){
-                                        $(this).appendTo(".basketDiv2").fadeIn(1)
-                                    })
-                                }
-                            });
-                            return false
+                                $(".basketDiv2").droppable({
+                                    scope: "img2",
+                                    activeClass: "aac",
+                                    drop: function( event, ui ) {
+                                        $(ui.draggable).fadeOut(1, function(){
+                                            $(this).appendTo(".basketDiv2").fadeIn(1)
+                                        })
+                                    }
+                                });
+                                return false
+                            }
+
+                        }else{
+                            $("<img>").addClass("imgStyle2").attr("src", item.media.m).appendTo("#searchImg")
+                            if(index == 1){
+                                $(function(){
+                                    $( ".imgStyle2" ).draggable({
+                                        revert: "invalid",
+                                        helper: "clone",
+                                        scope: "img2"
+                                    });
+                                });
+                                $(".basketDiv2").droppable({
+                                    scope: "img2",
+                                    activeClass: "aac",
+                                    drop: function( event, ui ) {
+                                        $(ui.draggable).fadeOut(1, function(){
+                                            $(this).appendTo(".basketDiv2").fadeIn(1)
+                                        })
+                                    }
+                                });
+                                return false
+                            }
                         }
+                        
                     })
                 })
             }
