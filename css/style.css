@@ -64,11 +64,14 @@ input {
     font-size: 18px;
     color: white;
     font-family: sans-serif;
+    cursor: pointer;
 }
 .sectionContainer {
-    height: 270px;
+    height: 0;
+    overflow: hidden;
     display: flex;
     justify-content: space-around;
+    transition: all .5s;
 }
 .p {
     border-bottom: 1px dashed #2292B2;
@@ -96,4 +99,11 @@ input:focus{
 }
 .aac{
     background: rgba(255,255,255,0.3);
+}
+i{transition: all .5s;}
+.iStyle{
+    transform: rotate(180deg);
+}
+.height{
+    height: 260px;
 }
