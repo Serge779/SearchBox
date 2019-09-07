@@ -11,6 +11,7 @@ $(function(){
                 
                 $("#searchImg").html("");
                 $(".basketDiv1").html("");
+                $(".basketDiv2").html("");
                 var first = $("input").val().split(" ");
                 var firstSearch = first[0];
 
